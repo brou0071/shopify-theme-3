@@ -1,0 +1,45 @@
+<div class="grid product-single test">
+  <div class="grid__item large--one-third medium--one-half small--one-whole"></div>
+  <div class="grid__item large--one-third medium--one-half small--one-whole text-center"><strong>{{ section.settings.heading }}</strong></div>
+  <div class="grid__item large--one-third medium--one-half small--one-whole text-right"><strong><a href="/collections/all/">{{ section.settings.button_title }} <span style="color:red;">></span></a></strong></div>
+</div>
+
+<br>
+
+<div class="grid product-single">
+  {% for product in collections.frontpage.products limit:4 %}
+  <div class="grid__item large--one-quarter medium--one-half small--one-whole">
+    <div class="product-single__meta">
+      <a class="product-single__anchor" href="{{ product.url | within: collection }}">
+        {% unless product.available %}<span class="product-single__sold-out">SOLD OUT</span>{% endunless %}
+
+        {% if product.compare_at_price > product.price %}
+          <span class="product-single__savings">SAVE: {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}%</span>
+        {% endif %}
+
+        <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+      </a>
+      <a href="{{ product.url | within: collection }}"><strong>{{ product.title }}</strong></a>
+      <p>{{ product.price | money }} <span id="ComparePrice" class="product-single__price--compare">{{ product.compare_at_price | money }}</span></p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Best Sellers Section",
+  "settings": [
+  {
+    "type": "text",
+    "label": "your headline here",
+    "id": "heading"
+  },
+  {
+    "type": "text",
+    "label": "your link text",
+    "id": "button_title"
+  }
+]
+}
+{% endschema %}

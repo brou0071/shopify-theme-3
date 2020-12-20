@@ -1,0 +1,59 @@
+{% paginate search.results by 48 %}
+
+  <div class="grid search__header">
+    <div class="grid__item large--two-thirds push--large--one-sixth">
+      {% if search.performed %}
+        {% if search.results_count == 0 %}
+          <h1 class="text-center">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
+        {% else %}
+          <h1 class="text-center">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
+        {% endif %}
+      {% else %}
+        <h1 class="text-center">{{ 'general.search.title' | t }}</h1>
+      {% endif %}
+      {% include 'search-bar' %}
+    </div>
+  </div>
+
+  {% if search.performed %}
+    <hr class="hr--clear">
+    <div class="grid-uniform">
+      {% for item in search.results %}
+        <div class="collection__item grid__item small--one-half medium--one-third large--one-quarter">
+          {% if item.featured_image %}
+            <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}" class="grid__image">
+              {{ item.featured_image.src | img_url: '1024x1024' | img_tag: item.featured_image.alt }}
+            </a>
+          {% endif %}
+
+          <h3>{{ item.title | link_to: item.url }}</h3>
+
+          {% if item.price %}
+            <p>
+              {% if item.available == false %}
+                {{ 'products.product.sold_out' | t }}
+              {% else %}
+                {% if item.compare_at_price > item.price %}
+                  {{ item.price | money }}
+                  <s>{{ item.compare_at_price | money }}</s>
+                {% else %}
+                  {{ item.price | money }}
+                {% endif %}
+              {% endif %}
+            </p>
+          {% else %}
+            <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <hr>
+      <div class="pagination">
+        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+      </div>
+    {% endif %}
+  {% endif %}
+
+{% endpaginate %}

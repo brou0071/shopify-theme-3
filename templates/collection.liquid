@@ -1,0 +1,44 @@
+{% paginate collection.products by 48 %}
+
+  {% include 'breadcrumb' %}
+
+  {% if collection.description != blank %}
+    <header class="section-header">
+      <h1 class="section-header__title">{{ collection.title }}</h1>
+      <div class="rte rte--header">
+        {{ collection.description }}
+      </div>
+    </header>
+    <hr>
+    <div class="section-header">
+      <div class="section-header__right small--hide">
+        {% include 'collection-sorting' %}
+      </div>
+    </div>
+  {% else %}
+    <header class="section-header">
+      <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+      <div class="section-header__right small--hide">
+        {% include 'collection-sorting' %}
+      </div>
+    </header>
+  {% endif %}
+
+  <div class="grid-uniform">
+    {% for product in collection.products %}
+      {% include 'product-grid-item' %}
+    {% else %}
+      <div class="grid__item">
+        <h3 class="text-center">{{ 'collections.general.no_matches' | t }}</h3>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if paginate.pages > 1 %}
+    <hr>
+    <div class="pagination">
+      {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+    </div>
+  {% endif %}
+
+{% endpaginate %}

@@ -1,0 +1,105 @@
+[
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary",
+        "default": "#204a80",
+        "info": "Used for text links, and primary buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary",
+        "default": "#dcdcdc",
+        "info": "Used for secondary buttons"
+      }
+    ]
+  },
+  {
+    "name": "Announcement Bar 1",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcement_1",
+        "placeholder": "Add your paragraph text here."
+      }
+    ]
+  },
+  {
+    "name": "Announcement Bar 2",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcement_2",
+        "placeholder": "Add your paragraph text here."
+      }
+    ]
+  },
+  {
+    "name": "Slide 1 Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "hero_text_1",
+        "placeholder": "Add your paragraph text here."
+      }
+    ]
+  },
+  {
+    "name": "Slide 1 Title",
+    "settings": [
+      {
+        "type": "text",
+        "id": "hero_title_1",
+        "placeholder": "Add your title here."
+      }
+    ]
+  },
+  {
+    "name": "Slide 2 Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "hero_text_2",
+        "placeholder": "Add your paragraph text here."
+      }
+    ]
+  },
+  {
+    "name": "Slide 2 Title",
+    "settings": [
+      {
+        "type": "text",
+        "id": "hero_title_2",
+        "placeholder": "Add your title here."
+      }
+    ]
+  },
+  {
+    "name": "Slide 3 Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "hero_text_3",
+        "placeholder": "Add your paragraph text here."
+      }
+    ]
+  },
+  {
+    "name": "Slide 3 Title",
+    "settings": [
+      {
+        "type": "text",
+        "id": "hero_title_3",
+        "placeholder": "Add your title here."
+      }
+    ]
+  }
+]

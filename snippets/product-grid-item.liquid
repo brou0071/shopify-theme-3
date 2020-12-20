@@ -1,0 +1,22 @@
+<div class="collection__item grid__item small--one-half medium--one-third large--one-third">
+  <a href="{{ product.url | within: collection }}" class="grid__image">
+    <img src="{{ product.featured_image.src | img_url: '1024x1024' }}" alt="{{ product.featured_image.alt | escape }}">
+  </a>
+
+  <h3>
+    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+  </h3>
+
+  <p>
+    {% if product.available == false %}
+      {{ 'products.product.sold_out' | t }}
+    {% else %}
+      {% if product.compare_at_price > product.price %}
+        {{ product.price | money }}
+        <s>{{ product.compare_at_price | money }}</s>
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+    {% endif %}
+  </p>
+</div>
